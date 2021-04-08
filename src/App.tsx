@@ -3,9 +3,10 @@ import { initialConfig, models } from './data';
 import './App.css';
 
 // components
-import Menu from './components/Menu/Menu';
-import Footer from './components/Footer/Footer';
-import { IDesign } from './interfaces';
+import Menu from './components/Menu';
+import Footer from './components/Footer';
+import Settings from './components/Settings';
+import { IDesign, IModel } from './interfaces';
 
 const App = () => {
   const [currentStep, setCurrentStep] = useState(0);
@@ -74,7 +75,8 @@ const App = () => {
     }
   ];
 
-    // base price
+  // base price
+  const totalPrice = () => {
     const basePrice = selectedModel?.types?.find(
       type => type.value === config?.car_type
     )?.price ?? 0;
@@ -100,6 +102,7 @@ const App = () => {
     )?.price ?? 0;
 
     setTotal(basePrice + colorPrice + wheelsPrice + interiorColorPrice + interiorLayoutPrice);
+  }
 
   const goToStep = (step: number) => setCurrentStep(step);
 
@@ -119,6 +122,20 @@ const App = () => {
     setCurrentStep(newStep);
   };
 
+  const handleChangeModel = (model: string) => setConfig( initialConfig?[model]);
+
+  const handleOnSelectOption = (prop: string, value: any) => {
+    if (prop === "model") {
+      handleChangeModel(value);
+    }
+    else {
+      setConfig(prevState => ({
+          ...prevState,
+          [prop]: value
+      }));
+    }
+  };
+
 
   // check current step
   const isFirstStep = currentStep === 0;
@@ -131,15 +148,12 @@ const App = () => {
         selectedItem={currentStep}
         onSelectItem={goToStep} />
       <main className="app-content">
-        Car Design Here
+      <Settings
+              config={config}
+              settings={steps[currentStep].settings}
+              onSelectOption={handleOnSelectOption}
+            />
       </main>
-      <Footer
-        totalPrice={total}
-        disablePrev={isFirstStep}
-        disableNext={isLastStep}
-        onClickPrev={goToPrevStep}
-        onClickNext={goToNextStep}
-      />
     </div>
   )
 }

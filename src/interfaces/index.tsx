@@ -32,3 +32,15 @@ export interface IModel {
     interiorColors: IDesign[]
     interiorLayouts?: IDesign[]
 }
+
+export interface ISettings {
+    label: string
+    type: string
+    prop: string | number
+    options: [{
+        value: string
+        price: number
+    }]
+    disclaimer_1?: string
+    disclaimer_2?: string
+}
