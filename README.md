@@ -2,6 +2,8 @@
 
 A demo for tesla car configuration. Users can build their favourite tesla through this interesting platform.
 
+Demo: https://tesla-buidler.netlify.app/
+
 ## Installation
 
 `$ git clone https://github.com/tinla94/build-tesla-car-demo` or click `Clone or download`.
