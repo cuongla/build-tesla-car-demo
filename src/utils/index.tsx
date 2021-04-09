@@ -12,3 +12,14 @@ export const selectedModel = (models: any[], configModel: string) => {
         model?.key === configModel
     );
 };
+
+export const randomNumbers = (count: number) => {
+    const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789'.split('');
+    let result = '';
+
+    for (var i = 0; i < count; i++) {
+        var x = Math.floor(Math.random() * chars.length);
+        result += chars[x];
+    }
+    return result;
+}

@@ -10,6 +10,7 @@ import Settings from '../../components/Settings';
 import Summary from '../../components/Summary';
 import Preview from '../../components/Preview';
 import InteriorPreview from '../../components/InteriorPreview';
+import OrderSuccess from '../../components/OrderSuccess';
 
 const App = () => {
   const [currentStep, setCurrentStep] = useState(0);
@@ -174,11 +175,14 @@ const App = () => {
         }
         {
           isLastStep ? (
-            <Summary
-              config={config}
-              models={models}
-              totalPrice={totalPrice}
-            />
+            <>
+              <Summary
+                config={config}
+                models={models}
+                totalPrice={totalPrice}
+              />
+              <OrderSuccess />
+            </>
           ) : (
             <Settings
               config={config}
