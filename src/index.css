@@ -20,7 +20,7 @@ body {
   --theme-surface: transparent;
   --theme-text: #151618;
   --theme-footer-text: #ffffff;
-  --theme-primary: #c33364;
+  --theme-primary: #007788;
   --theme-separator: #dfdfdf;
   --theme-footer-separator: #333;
   --theme-border: #ddd;
@@ -42,7 +42,7 @@ body.dark-mode {
   --theme-surface: #25282c;
   --theme-text: #ffffff;
   --theme-footer-text: #ffffff;
-  --theme-primary: #c33364;
+  --theme-primary: #007788;
   --theme-separator: rgba(244,245,246,0.12);
   --theme-footer-separator: rgba(244,245,246,0.12);
   --theme-border: #151618;
