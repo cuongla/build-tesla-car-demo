@@ -1,4 +1,4 @@
-import { IDesign, IModel } from './interfaces';
+import { IDesign, IModel } from './interfaces/model.interface';
 
 export const colors: IDesign[] = [
     { label: "Pearl White Multi-Coat", value: "white", price: 0 },

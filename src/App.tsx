@@ -1,17 +1,21 @@
 import React, { useState } from 'react';
 import { initialConfig, models } from './data';
 import './App.css';
+import { IDesign, ISettings } from './interfaces/model.interface';
 
 // components
 import Menu from './components/Menu';
 import Footer from './components/Footer';
 import Settings from './components/Settings';
-import { IDesign, IModel } from './interfaces';
+import Summary from './components/Summary';
+import Preview from './components/Preview';
+import InteriorPreview from './components/InteriorPreview';
 
 const App = () => {
   const [currentStep, setCurrentStep] = useState(0);
   const [config, setConfig] = useState((initialConfig?.['s'] ?? null));
-  const [total, setTotal] = useState(0);
+
+  // const [total, setTotal] = useState(0);
   const selectedModel = models.find(model => model?.key === config?.model);
   const steps = [
     {
@@ -75,8 +79,7 @@ const App = () => {
     }
   ];
 
-  // base price
-  const totalPrice = () => {
+  // total price
     const basePrice = selectedModel?.types?.find(
       type => type.value === config?.car_type
     )?.price ?? 0;
@@ -101,9 +104,9 @@ const App = () => {
       interiorLayout => interiorLayout.value === config?.interior_layout
     )?.price ?? 0;
 
-    setTotal(basePrice + colorPrice + wheelsPrice + interiorColorPrice + interiorLayoutPrice);
-  }
+    const totalPrice = (basePrice + colorPrice + wheelsPrice + interiorColorPrice + interiorLayoutPrice);
 
+  // functions 
   const goToStep = (step: number) => setCurrentStep(step);
 
   const goToPrevStep = () => {
@@ -118,11 +121,10 @@ const App = () => {
     const newStep = currentStep < steps.length - 1
       ? currentStep + 1
       : currentStep;
-
     setCurrentStep(newStep);
   };
 
-  const handleChangeModel = (model: string) => setConfig( initialConfig?[model]);
+  const handleChangeModel = (model: 's' | 'x' | 'y') => setConfig(initialConfig[model]);
 
   const handleOnSelectOption = (prop: string, value: any) => {
     if (prop === "model") {
@@ -130,8 +132,8 @@ const App = () => {
     }
     else {
       setConfig(prevState => ({
-          ...prevState,
-          [prop]: value
+        ...prevState,
+        [prop]: value
       }));
     }
   };
@@ -146,14 +148,49 @@ const App = () => {
       <Menu
         items={steps.map(step => step.name)}
         selectedItem={currentStep}
-        onSelectItem={goToStep} />
+        onSelectItem={goToStep}
+      />
       <main className="app-content">
-      <Settings
+        {
+          steps[currentStep]?.name === "interior" ? (
+            <InteriorPreview
+              interior={selectedModel?.interiorColors.find(
+                interiorColor => interiorColor.value === config.interior_color
+              )}
+            />
+          ) : (
+            <Preview
               config={config}
-              settings={steps[currentStep].settings}
+              models={models}
+              showAllModels={isFirstStep}
+              showSpecs={!isLastStep}
+              onChangeModel={handleChangeModel}
+            />
+          )
+        }
+        {
+          isLastStep ? (
+            <Summary
+              config={config}
+              models={models}
+              totalPrice={totalPrice}
+            />
+          ) : (
+            <Settings
+              config={config}
+              settings={steps[currentStep].settings as ISettings[]}
               onSelectOption={handleOnSelectOption}
             />
+          )
+        }
       </main>
+      <Footer
+        totalPrice={totalPrice}
+        disablePrev={isFirstStep}
+        disableNext={isLastStep}
+        onClickPrev={goToPrevStep}
+        onClickNext={goToNextStep}
+      />
     </div>
   )
 }

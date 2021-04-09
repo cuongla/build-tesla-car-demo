@@ -4,7 +4,7 @@ export interface IDesign {
     price: number
 }
 
-interface Wheels {
+export interface IWheels {
     src: string
     label: string
     value: string
@@ -24,10 +24,10 @@ interface Types {
 }
 
 export interface IModel {
-    key: string
+    key: any
     name: string
     colors: any
-    wheels: Wheels[]
+    wheels: IWheels[]
     types: Types[]
     interiorColors: IDesign[]
     interiorLayouts?: IDesign[]
@@ -36,11 +36,8 @@ export interface IModel {
 export interface ISettings {
     label: string
     type: string
-    prop: string | number
-    options: [{
-        value: string
-        price: number
-    }]
+    prop: string 
+    options: Types[]
     disclaimer_1?: string
     disclaimer_2?: string
 }

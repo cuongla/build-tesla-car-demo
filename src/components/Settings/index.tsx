@@ -1,11 +1,12 @@
 import React, { FC } from 'react';
 import Option from '../Option';
 import { formatPrice } from '../../utils';
-import { ISettings } from '../../interfaces'
+import { ISettings } from '../../interfaces/model.interface'
+import './Setting.css';
 
 interface SettingsProps {
     config: any | null
-    settings: ISettings[]
+    settings?: ISettings[]
     onSelectOption: (prop: any, value: any) => void
 }
 
@@ -14,7 +15,6 @@ const Settings: FC<SettingsProps> = ({
     settings,
     onSelectOption
 }) => {
-
     const selectedOptions: any = settings?.reduce(
         (acc, setting) => ({
             ...acc,
@@ -22,11 +22,7 @@ const Settings: FC<SettingsProps> = ({
                 option.value === config[setting.prop]
             ) ?? []
         }),
-        [{
-            label: '',
-            benefits: [],
-            price: 0
-        }]
+        {}
     );
 
     return (
@@ -53,28 +49,33 @@ const Settings: FC<SettingsProps> = ({
                             <div className={`settings-options settings-options-${setting.type}`}>
                                 {
                                     setting.options.map(option => (
-                                        <Option
-                                            {...option}
-                                            key={option.value}
-                                            type={setting.type}
-                                            price={formatPrice(option.price)}
-                                            active={config?.[setting.prop] === option.value}
-                                            onSelectOption={(value) =>
-                                                onSelectOption(setting.prop, value)
-                                            }
-                                        />
+                                        <>
+                                            <Option
+                                                {...option}
+                                                key={option.value}
+                                                type={setting.type}
+                                                // @ts-ignore
+                                                price={formatPrice(option.price)}
+                                                active={config?.[setting.prop] === option.value}
+                                                onSelectOption={(value) =>
+                                                    onSelectOption(setting.prop, value)
+                                                }
+                                            />
+                                        </>
                                     ))
                                 }
                             </div>
                             {
-                                setting.type !== "text" ? (
-                                    <div className="settings-group-label">
-                                        <span>{selectedOptions?.[setting.prop]?.label}</span>
-                                        <span className="price">
-                                            {formatPrice(selectedOptions?.[setting.prop]?.price)}
-                                        </span>
-                                    </div>
-                                ) : null
+                                setting.type !== "text"
+                                    ? (
+                                        <div className="settings-group-label">
+                                            <span>{selectedOptions?.[setting.prop]?.label}</span>
+                                            <span className="price">
+                                                {formatPrice(selectedOptions?.[setting.prop]?.price)}
+                                            </span>
+                                        </div>
+                                    )
+                                    : null
                             }
                             {
                                 selectedOptions?.[setting.prop]?.benefits ? (

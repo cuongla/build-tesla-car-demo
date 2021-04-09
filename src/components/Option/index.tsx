@@ -1,4 +1,5 @@
 import React, { FC } from 'react'
+import './Option.css';
 
 const types = ["text", "color", "image"];
 
@@ -7,7 +8,7 @@ interface OptionProps {
     label?: string
     src?: string
     type: string
-    price: string | null
+    price: string | number
     active: boolean
     onSelectOption: (value: any) => void
 }
@@ -35,7 +36,7 @@ const Option: FC<OptionProps> = ({
                 return (
                     <>
                         <span>{label}</span>
-                        {price ? <span className="price">{Number(price)}</span> : null}
+                        {price ? <span className="price">{price}</span> : null}
                     </>
                 );
             case "image":
