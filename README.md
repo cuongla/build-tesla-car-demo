@@ -1,46 +1,42 @@
-# Getting Started with Create React App
+# React-Tesla-Builder
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A demo for tesla car configuration. Users can build their favourite tesla through this interesting platform.
 
-## Available Scripts
+## Installation
 
-In the project directory, you can run:
+`$ git clone https://github.com/tinla94/build-tesla-car-demo` or click `Clone or download`.
 
-### `yarn start`
+### Code Folder
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+1. Install node packages: `npm install`
+2. Start up browser to see UI: `npm start`.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+## Technology Use
 
-### `yarn test`
+### Front-End
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+1. `React` - an open-source JavaScript library which is used for building user interfaces specifically for single page applications
 
-### `yarn build`
+2. `React Hooks` - functions that let us hook into the React state and lifecycle features from function components
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+3. `Typescript` - an open-source language which builds on JavaScript, one of the world's most used tools, by adding static type definitions.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+4. `CSS` - the language for describing the presentation of Web pages, including colors, layout, and fonts.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+5. `React Icons` - a library that provides popular icons for your React applications
 
-### `yarn eject`
+## Deployment
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+You can use any Cloud Server to deploy your application.
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+In this project, I have used `Netlify` service to deploy my application.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+### Who is Netlify?
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+`Netlify` a web developer platform that multiplies productivity. By unifying the elements of the modern decoupled web, from local development to advanced edge logic, `Netlify` enables a 10x faster path to much more performant, secure, and scalable websites and apps.
 
-## Learn More
+You can learn more about how to deploy your app with `Netlify` here: https://www.netlify.com/blog/2016/09/29/a-step-by-step-guide-deploying-on-netlify/
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+## Authors
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+- **Cuong La**
