@@ -33,7 +33,7 @@ const Slideshow: FC<SlideshowProps> = ({
                     <img
                         src={item.url}
                         alt={item.alt}
-                        className={item.scale ? 'scale' : null}
+                        className={item.scale ? 'scale' : undefined}
                     />
                 </div>
             ))
