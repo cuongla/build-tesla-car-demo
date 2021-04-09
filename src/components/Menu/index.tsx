@@ -4,7 +4,7 @@ import './Menu.css';
 
 interface MenuProps {
     items: string[]
-    selectedItem: number | string | null
+    selectedItem?: number | string | null
     onSelectItem: (selectedItem: number) => void
 }
 
