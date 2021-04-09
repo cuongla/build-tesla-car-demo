@@ -25,7 +25,7 @@ const Menu: FC<MenuProps> = ({ items, selectedItem, onSelectItem }) => {
                     <li
                         key={item}
                         onClick={() => onSelectItem(i)}
-                        className={selectedItem === i ? 'selected' : null}
+                        className={selectedItem === i ? 'selected' : undefined}
                     >
                         <h2>{item}</h2>
                     </li>
