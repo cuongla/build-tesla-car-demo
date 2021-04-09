@@ -6,6 +6,11 @@
     overflow: hidden;
 }
 
+.design-dark {
+    background: #000;
+    color: white;
+}
+
 .design-content {
     width: 100%;
     height: calc(100% - var(--menu-height) - var(--footer-height));

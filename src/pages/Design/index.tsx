@@ -80,31 +80,31 @@ const App = () => {
   ];
 
   // total price
-    const basePrice = selectedModel?.types?.find(
-      type => type.value === config?.car_type
-    )?.price ?? 0;
+  const basePrice = selectedModel?.types?.find(
+    type => type.value === config?.car_type
+  )?.price ?? 0;
 
-    // color price
-    const colorPrice = selectedModel?.colors?.find(
-      (color: IDesign) => color.value === config?.color
-    )?.price ?? 0;
+  // color price
+  const colorPrice = selectedModel?.colors?.find(
+    (color: IDesign) => color.value === config?.color
+  )?.price ?? 0;
 
-    // wheels price
-    const wheelsPrice = selectedModel?.wheels?.find(
-      wheels => wheels.value === config?.wheels
-    )?.price ?? 0;
+  // wheels price
+  const wheelsPrice = selectedModel?.wheels?.find(
+    wheels => wheels.value === config?.wheels
+  )?.price ?? 0;
 
-    // interior colors price
-    const interiorColorPrice = selectedModel?.interiorColors?.find(
-      interiorColor => interiorColor.value === config?.interior_color
-    )?.price ?? 0;
+  // interior colors price
+  const interiorColorPrice = selectedModel?.interiorColors?.find(
+    interiorColor => interiorColor.value === config?.interior_color
+  )?.price ?? 0;
 
-    // interior layout price
-    const interiorLayoutPrice = selectedModel?.interiorLayouts?.find(
-      interiorLayout => interiorLayout.value === config?.interior_layout
-    )?.price ?? 0;
+  // interior layout price
+  const interiorLayoutPrice = selectedModel?.interiorLayouts?.find(
+    interiorLayout => interiorLayout.value === config?.interior_layout
+  )?.price ?? 0;
 
-    const totalPrice = (basePrice + colorPrice + wheelsPrice + interiorColorPrice + interiorLayoutPrice);
+  const totalPrice = (basePrice + colorPrice + wheelsPrice + interiorColorPrice + interiorLayoutPrice);
 
   // functions 
   const goToStep = (step: number) => setCurrentStep(step);
@@ -143,7 +143,11 @@ const App = () => {
   const isFirstStep = currentStep === 0;
   const isLastStep = currentStep === steps.length - 1;
 
+  // check dark mode
+  // const isDarkMode = localStorage.getItem('darkMode');
+
   return (
+    // <div className={`design ${isDarkMode === 'false' ? '' : 'design-dark'}`}>
     <div className="design">
       <Menu
         items={steps.map(step => step.name)}

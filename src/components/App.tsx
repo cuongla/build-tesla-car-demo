@@ -1,4 +1,4 @@
-import React, { Suspense } from 'react';
+import React, { Suspense, useEffect } from 'react';
 import { Switch, Route, BrowserRouter as Router } from 'react-router-dom';
 import Loader from './Loader';
 
@@ -7,6 +7,15 @@ const DesignPage = React.lazy(() => import('../pages/Design'));
 
 
 const App = () => {
+  const isDarkMode = localStorage.getItem('darkMode');
+  const body = document.body;
+
+  useEffect(() => {
+    isDarkMode === 'true'
+      ? body.classList.add('dark-mode')
+      : body.classList.remove('dark-mode');
+  }, [isDarkMode, body]);
+
   return (
     <Router>
       <Switch>

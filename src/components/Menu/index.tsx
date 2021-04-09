@@ -1,4 +1,4 @@
-import React, { FC, useState } from 'react'
+import React, { FC, useCallback, useState } from 'react'
 import { FaMoon, FaSun } from 'react-icons/fa';
 import './Menu.css';
 
@@ -10,13 +10,23 @@ interface MenuProps {
 
 const Menu: FC<MenuProps> = ({ items, selectedItem, onSelectItem }) => {
     const [darkMode, setDarkMode] = useState(false);
+    const body = document.body;
+    const isDarkMode = localStorage.getItem('darkMode');
 
-    const handleChangeMode = () => setDarkMode((prevState: any) => ({
-        ...prevState,
-        darkMode: !prevState.darkMode
-    }));
+    const handleChangeMode = useCallback(
+        () => {
+            setDarkMode(!darkMode);
+            // change theme
+            darkMode 
+                ? body.classList.add('dark-mode') 
+                : body.classList.remove('dark-mode');
+                 
+            localStorage.setItem('darkMode', darkMode.toString());
+        },
+        [body.classList, darkMode]
+    );
 
-    const ModeIcon = darkMode ? FaSun : FaMoon;
+    const ModeIcon = isDarkMode === 'true' ? FaSun : FaMoon;
 
     return (
         <div className="menu-container">
@@ -32,7 +42,7 @@ const Menu: FC<MenuProps> = ({ items, selectedItem, onSelectItem }) => {
                 ))}
             </ul>
             <ModeIcon
-                className="mode-icon" 
+                className="mode-icon"
                 onClick={handleChangeMode} />
         </div>
     )
